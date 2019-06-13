@@ -1,0 +1,132 @@
+
+# Spaghetti Plot with Overall Smoother - for longitudinal data.
+
+# this example is from:  https://www.r-bloggers.com/my-commonly-done-ggplot2-graphs/
+
+# For this example the author took code from StackOverflow to create some longitudinal data:
+# http://stats.stackexchange.com/questions/76999/simulating-longitudinal-lognormal-data-in-r
+
+library(ggplot2)
+library(MASS)
+library(nlme)
+library(plyr)
+
+### set number of individuals
+n <- 200
+
+### average intercept and slope
+beta0 <- 1.0
+beta1 <- 6.0
+
+### true autocorrelation
+ar.val <- .4
+
+### true error SD, intercept SD, slope SD, and intercept-slope cor
+sigma <- 1.5
+tau0  <- 2.5
+tau1  <- 2.0
+tau01 <- 0.3
+
+### maximum number of possible observations
+m <- 10
+
+### simulate number of observations for each individual
+p <- round(runif(n,4,m))
+
+### simulate observation moments (assume everybody has 1st obs)
+obs <- unlist(sapply(p, function(x) c(1, sort(sample(2:m, x-1, replace=FALSE)))))
+
+### set up data frame
+dat <- data.frame(id=rep(1:n, times=p), obs=obs)
+
+### simulate (correlated) random effects for intercepts and slopes
+mu  <- c(0,0)
+S   <- matrix(c(1, tau01, tau01, 1), nrow=2)
+tau <- c(tau0, tau1)
+S   <- diag(tau) %*% S %*% diag(tau)
+U   <- mvrnorm(n, mu=mu, Sigma=S)
+
+### simulate AR(1) errors and then the actual outcomes
+dat$eij <- unlist(sapply(p, function(x) arima.sim(model=list(ar=ar.val), n=x) * sqrt(1-ar.val^2) * sigma))
+dat$yij <- (beta0 + rep(U[,1], times=p)) + (beta1 + rep(U[,2], times=p)) * log(dat$obs) + dat$eij
+
+# I will first add an alpha level to the plotting lines for the next plot 
+# (remember this must be done before the original plot is created). 
+# tspag will be the template plot, and I will create a spaghetti plot (spag) 
+# where each colour represents an id:
+
+
+library(plyr)
+dat = ddply(dat, .(id), function(x){
+  x$alpha = ifelse(runif(n = 1) > 0.9, 1, 0.1)
+  x$grouper = factor(rbinom(n=1, size =3 ,prob=0.5), levels=0:3)
+  x
+})
+
+
+tspag <- ggplot(dat, aes(x=obs, y=yij)) + 
+  geom_line() + guides(colour=FALSE) + xlab('Observation Time Point') +
+  ylab('Y')
+
+tspag
+
+spag = tspag + aes(colour = factor(id))
+
+spag
+
+# Many other times I want to group by id but plot just a few lines 
+# (let's say 10% of them) dark and the other light, and not colour them:
+
+bwspag = tspag + aes(alpha=alpha, group=factor(id)) + guides(alpha=FALSE)
+bwspag
+
+
+# Overall, these 2 plots are useful when you have longitudinal data and 
+# don't want to loop over ids or use lattice. The great addition is that 
+# all the faceting and such above can be used in conjunction with these plots 
+# to get spaghetti plots by subgroup.
+
+spag + facet_wrap(~ grouper)
+
+
+##### Spaghetti plot with overall smoother:
+
+# If you want a smoother for the overall group in addition to the spaghetti plot, 
+# you can just add geom_smooth:
+
+sspag <- spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag
+
+sspag + facet_wrap(~ grouper)
+
+bwspag + facet_wrap(~ grouper)    # note that only one individual in grouper=0 was highlighted.
+
+
+
+# Note that the group aesthetic and colour aesthetic DO NOT PERFORM THE SAME WAY
+# for some operations.  
+#For example, let's try to smooth bwswag:
+
+bwspag + facet_wrap(~ grouper) + geom_smooth(se=FALSE, colour='red')
+
+
+# We see that it smooths each id, which is not what we want. 
+# We can achieve the desired result by setting the group aesthetic:
+
+bwspag + facet_wrap(~ grouper) + 
+  geom_smooth(aes(group=1), se=FALSE, colour='red', size =2)
+
+
+#### Printing multiple plots to different devices.
+#### The object 'g' needs to be created first ('retrying geoms.R')
+
+pdf(tempfile())
+print({g1 = g + aes(colour = group1)})
+print({g1fac = g + aes(colour = factor(group1))})
+print({g2 = g + aes(colour = group2)})
+dev.off()
+
+png(tempfile(), res = 300, height =7, width= 7, units = "in")
+print(g2)
+dev.off()
+

@@ -1,0 +1,435 @@
+library(ggplot2)
+ggplot(data = quakes, aes(x = lat,y = long,colour = stations)) + geom_point()
+g = ggplot(data = quakes,
+aes(x = lat,y = long,colour = stations)) +
+geom_point()
+print(g)
+?theme
+gbig= g + theme(axis.text = element_text(size = 18),
+axis.title = element_text(size = 20),
+legend.text = element_text(size = 15),
+legend.title = element_text(size = 15))
+gbig
+gbig = gbig + xlab("Latitude") + ylab("Longitude")
+gbig
+gbig + ggtitle("Spatial Distribution of Stations")
+gbig
+gbig + ggtitle("Spatial Distribution of Stations")
+gbig
+gbig + ggtitle("Spatial Distribution of Stations")
+gbig <- gbig +
+ggtitle("Spatial Distribution of Stations") +
+theme(title = element_text(size = 30))
+gbig
+gbig <- gbig +   theme(title = element_text(size = 20))
+gbig
+gbigleg_orig = gbig + guides(colour = guide_colorbar(title = "Number of Stations Reporting"))
+gbigleg_orig
+gbigleg = gbig + guides(colour = guide_colorbar(title = "Number\nof\nStations\nReporting"))
+gbigleg
+gbigleg = gbigleg +
+guides(colour = guide_colorbar(title = "Number\nof\nStations\nReporting",
+title.hjust = 0.5))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.3, 0.35))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.35, 0.35))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.30, 0.25))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.30, 0.30))
+gbigleg
+transparent_legend =  theme(
+legend.background = element_rect(fill = "transparent"),
+legend.key = element_rect(fill = "transparent",
+color = "transparent")
+)
+gbigleg = gbigleg + transparent_legend
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.25, 0.30))
+gbigleg
+install.packages("dplyrXdf")
+install.packages("dplyr")
+library(dplyr)
+library(installr)
+updateR()
+library(ggplot2)
+library(MASS)
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("dplyr")
+library(dplyr)
+install.packages("tidydata")
+install.packages("tidyr")
+library(swirl)
+library("swirl"")
+""
+library("swirl")
+install.packages("swirl")
+install.packages("nlme")
+library("swirl")
+swirl()
+# This is from: https://hopstat.wordpress.com/2016/02/18/how-i-build-up-a-ggplot2-figure/
+# I've tried these commands, and THEY WORK!
+library(ggplot2)
+ggplot(data = quakes, aes(x = lat,y = long,colour = stations)) + geom_point()
+g = ggplot(data = quakes,
+aes(x = lat,y = long,colour = stations)) +
+geom_point()
+print(g)
+gbig <- g + theme(axis.text = element_text(size = 18),
+axis.title = element_text(size = 20),
+legend.text = element_text(size = 15),
+legend.title = element_text(size = 15))
+gbig
+gbig <- gbig + xlab("Latitude") + ylab("Longitude")
+gbig
+gbig <-gbig + ggtitle("Spatial Distribution of Stations")
+gbig <- gbig +
+ggtitle("Spatial Distribution of Stations") +
+theme(title = element_text(size = 30))
+gbig
+gbig <- gbig +   theme(title = element_text(size = 20))
+gbig
+gbigleg_orig = gbig + guides(colour = guide_colorbar(title = "Number of Stations Reporting"))
+gbigleg_orig
+gbigleg = gbig + guides(colour = guide_colorbar(title = "Number\nof\nStations\nReporting"))
+gbigleg
+gbigleg = gbigleg +
+guides(colour = guide_colorbar(title = "Number\nof\nStations\nReporting",
+title.hjust = 0.5))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.30, 0.30))
+gbigleg
+# the author wrote a helper function:
+transparent_legend =  theme(
+legend.background = element_rect(fill = "transparent"),
+legend.key = element_rect(fill = "transparent",
+color = "transparent")
+)
+gbigleg = gbigleg + transparent_legend
+gbigleg = gbigleg +
+theme(legend.position = c(0.25, 0.30))
+gbigleg
+gbigleg = gbigleg +
+theme(legend.position = c(0.10, 0.30))
+gbigleg
+?qplot
+data(diamonds)
+detach(diamonds)
+detach("diamonds")
+summary()
+set.seed(1410) # Make the sample reproducible
+dsmall <-diamonds[sample(nrow(diamons),100),]
+dsmall <-diamonds[sample(nrow(diamonds),100),]
+qplot(carat, price, data=diamonds)
+qplot(log(carat), log(price), data=diamonds)
+qplot(caret, x*y*z, data=diamonds)
+qplot(carat, x*y*z, data=diamonds)
+qplot(carat, price, data=dsmall, colour=color)
+qplot(carat, price, data=dsmall, shape=cut)
+qplot(carat, price, data=dsmall,  colour=color, shape=cut)
+qplot(caret, price, data=diamonds, alpha=I(1/10), title="Alpha=I(1/10)")
+?qplot
+qplot(caret, price, data=diamonds, alpha=I(1/10), title="Alpha=I(1/10)", main="Alpha=I(1/10)")
+qplot(caret, price, data=diamonds, alpha=I(1/10), main="Alpha=I(1/10)")
+qplot(carat, price, data=diamonds, alpha=I(1/10), main="Alpha=I(1/10)")
+qplot(carat, price, data=diamons, alpha=I(1/100), main="Alpha=I(1/100)")
+qplot(carat, price, data=diamonds, alpha=I(1/200), main="Alpha=I(1/200)")
+qplot(carat, price, data=diamonds, alpha=I(1/10), main="Alpha=I(1/10)")
+qplot(carat, price, data=diamonds, alpha=I(1/100), main="Alpha=I(1/100)")
+qplot(carat, price, data=diamonds, alpha=I(1/200), main="Alpha=I(1/200)")
+qplot(carat, price, data=dsmall,  colour=color, geom="smooth")
+qplot(carat, price, data=dsmall,  geom="smooth")
+qplot(carat, price, data=dsmall,  geom="smooth", geom="point")
+qplot(carat, price, data=dsmall,  geom="smooth" )
++ geom="point"
+qplot(carat, price, data=dsmall, gemo=c("smooth","point"))
+qplot(carat, price, data=dsmall, geom=c("smooth","point")) # plots both
+library(ggplot2)
+install.packages("nutshell")
+install.packages("BayesFactor")
+install.packages("foreign")
+install.packages("gdata")
+install.packages("RCurl")
+install.packages("XML")
+install.packages("ggplot2")
+install.packages("ggplots")
+install.packages("lattice")
+install.packages("latticeExtra")
+install.packages("gridExtra")
+install.packages("GGally")
+install.packages("cowplot")
+install.packages("ggExtra")
+install.packages("rworldmap")
+install.packages("RColorBrewer")
+install.packages("HistogramTools")
+install.packages("corrplot")
+install.packages("corrplot.mixed")
+install.packages("grid")
+install.packages("gpairs")
+install.packages("GGally")
+install.packages("sqldf")
+install.packages("reshapeGUI")
+install.packages("reshape2")
+install.packages("doBy")
+install.packages("plyr")
+install.packages("reshape")
+install.packages("tidydata")
+install.packages("tidyr")
+install.packages("stringr")
+install.packages('stringi')
+install.packages("data.table")
+install.packages("digest")
+install.packages("dplyr")
+install.packages("lubridate")
+install.packages("Amelia")
+install.packages("extracat")
+install.packages("Hmisc")
+install.packages("psych")
+install.packages("lessR")
+install.packages("devtools")
+install.packages("car")
+install.packages("qcc")
+install.packages("forecast")
+install.packages("spc")
+install.packages("qicharts")
+install.packages("IQCC")
+install.packages("SixSigma")
+install.packages("qicharts")
+install.packages("qualityTools")
+install.packages("TSA")
+install.packages("randomForest")
+install.packages("arules")
+install.packages("arulesViz")
+install.packages("caret")
+install.packages("rattle")
+install.packages("AppliedPredictiveModeling")
+install.packages("smart")
+install.packages("sm")
+install.packages("NMF")
+install.packages("DNMF")
+install.packages('proxy')
+install.packages('cluster')
+install.packages('nFactors')
+install.packages('KernSmooth')
+install.packages("car")
+install.packages("arm")
+install.packages("coefplot")
+install.packages("multcomp")
+install.packages("rms")
+install.packages("xtable", dependencies = TRUE)
+install.packages("lavaan")
+install.packages("semPLS")
+install.packages("semTools")
+install.packages("semPlot")
+install.packages("RJDBC")
+install.packages("ODBC")
+install.packages("xlsx")
+install.packages("Deducer")
+install.packages("XLConnect")
+install.packages("rJava")
+install.packages("Rcmdr")
+install.packages("RcmdrPlugin.qual")
+install.packages("RcmdrPlugin.doex")
+install.packages("RcmdrPlugin.DoE")
+install.packages("RcmdrPlugin.KMggplot2")
+install.packages("RcmdrPlugin.plotByGroup")
+install.packages("RcmdrPlugin.survival")
+install.packages("RcmdrPlugin.temis")
+install.packages("RcmdrPlugin.TeachingDemos")
+install.packages("SPREDA")
+install.packages("survival")
+install.packages("KMsurv")
+install.packages("RTextTools")
+install.packages("topicmodels")
+install.packages("twitteR")
+install.packages("tm")
+install.packages("SnowballC")
+install.packages("wordcloud")
+install.packages("RColorBrewer")
+install.packages("qdap")
+install.packages("devtools")
+library(ggplot2)
+library(ggplot2)
+qplot(carat, price, data=dsmall, geom=c("smooth","point")) # plots both
+qplot(carat, price, data=dsmall, geom=c("smooth","point"), span=0.2) # adjust the window
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"),
+span = 0.2)
+library(ggplot2)
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"),
+span = 0.2)
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"),
+span = 0.2)
+geom_smooth(span = .4)
+geom_smooth(span = 1)
+qplot(carat, price, data=dsmall, geom=c("point","smooth", span=0.1) )
+qplot(carat, price, data=dsmall, geom=c("point","smooth"), geom_smooth(span=0.1) )
+ggplot2(carat, price, data=dsmall, geom=c("smooth","point"))
+ggplot2carat, price, data=dsmall, geom=c("smooth","point"))
+ggplot(carat, price, data=dsmall, geom=c("smooth","point"))
+ggplot(dsmall, aes(x=carat, y=price),geom=c("smooth","point"))
++geom_point
++geom_point()
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
+geom_smooth()
+geom_smooth(span=0.2)
++  geom_smooth(span=0.2)
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"), span = 1)
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
++  geom_smooth(span=0.2)
+library(ggplot2)
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
++  geom_smooth(span=0.2)
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
++  geom_smooth()
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"), span = 0.2)
+qplot(carat, price, data = dsmall, geom = c("point", "smooth", span = 0.2)
+)
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"), span = 0.2))
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"), span = 0.2)
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
++  geom_smooth()
+ggplot(dsmall, aes(x=carat, y=price)) +
+geom_point()+
++  geom_smooth(stat="smooth")
+ggplot(dsmall, aes(x=carat, y=price))
++geom_point()
+library(ggplot2)
+set.seed(20141016)
+data = data.frame(x = rnorm(1000, mean=6))
+data$group1 = rbinom(n = 1000, size =1 , prob =0.5)
+data$y = data$x * 5 + rnorm(1000)
+data$group2 = runif(1000) &gt; 0.2
+data$group2 = runif(1000) > 0.2
+g = ggplot(data, aes(x = x, y=y)) + geom_point()
+g = ggplot(data, aes(x = x, y=y)) + geom_point()
+g = ggplot(data, aes(x = x, y=y)) + geom_point()
+g
+# add color:
+g + aes(colour=group1)
+g + aes(colour = factor(group1))
+g + aes(colour = group2)
+g + geom_smooth()
+g + geom_smooth()        # this includes the standard error bands by default.
+g2 + geom_smooth(se = FALSE)  # this turns them off.
+g + geom_smooth(se = FALSE)  # this turns them off.
+g + facet_wrap(~ group1)
+g + facet_wrap(~ group2)
+g + facet_wrap(group2 ~ group1)   # look at two faceting variables.
+g + facet_wrap(group2 ~ group1)  + geom_smooth()
+library(MASS)
+library(nlme)
+### set number of individuals
+n <- 200
+### average intercept and slope
+beta0 <- 1.0
+beta1 <- 6.0
+### true autocorrelation
+ar.val <- .4
+### true error SD, intercept SD, slope SD, and intercept-slope cor
+sigma <- 1.5
+tau0  <- 2.5
+tau1  <- 2.0
+tau01 <- 0.3
+### maximum number of possible observations
+m <- 10
+### simulate number of observations for each individual
+p <- round(runif(n,4,m))
+### simulate observation moments (assume everybody has 1st obs)
+obs <- unlist(sapply(p, function(x) c(1, sort(sample(2:m, x-1, replace=FALSE)))))
+### set up data frame
+dat <- data.frame(id=rep(1:n, times=p), obs=obs)
+### simulate (correlated) random effects for intercepts and slopes
+mu  <- c(0,0)
+S   <- matrix(c(1, tau01, tau01, 1), nrow=2)
+tau <- c(tau0, tau1)
+S   <- diag(tau) %*% S %*% diag(tau)
+U   <- mvrnorm(n, mu=mu, Sigma=S)
+### simulate AR(1) errors and then the actual outcomes
+dat$eij <- unlist(sapply(p, function(x) arima.sim(model=list(ar=ar.val), n=x) * sqrt(1-ar.val^2) * sigma))
+dat$yij <- (beta0 + rep(U[,1], times=p)) + (beta1 + rep(U[,2], times=p)) * log(dat$obs) + dat$eij
+library(plyr)
+dat = ddply(dat, .(id), function(x){
+x$alpha = ifelse(runif(n = 1) > 0.9, 1, 0.1)
+x$grouper = factor(rbinom(n=1, size =3 ,prob=0.5), levels=0:3)
+x
+})
+tspag = ggplot(dat, aes(x=obs, y=yij)) +
+geom_line() + guides(colour=FALSE) + xlab('Observation Time Point') +
+ylab('Y')
+spag = tspag + aes(colour = factor(id))
+spag
+bwspag = tspag + aes(alpha=alpha, group=factor(id)) + guides(alpha=FALSE)
+bwspag
+spag + facet_wrap(~ grouper)
+sspag = spag + geom_smooth(se=FALSE, colour=&quot;black&quot;, size=2)
+sspag
+sspag <= spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag
+sspag <= spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag <= spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag <- spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag
+sspag + facet_wrap(~ grouper)
+bwspag + facet_wrap(~ grouper)
+bwspag + facet_wrap(~ grouper) + geom_smooth(se=FALSE, colour='red')
+bwspag + facet_wrap(~ grouper) +
+geom_smooth(aes(group=1), se=FALSE, colour='red', size =2)
+library(ggplot2)
+library(MASS)
+library(nlme)
+library(plyr)
+tspag = ggplot(dat, aes(x=obs, y=yij)) +
+geom_line() + guides(colour=FALSE) + xlab('Observation Time Point') +
+ylab('Y')
+tspag = ggplot(dat, aes(x=obs, y=yij)) +
+geom_line() + guides(colour=FALSE) + xlab('Observation Time Point') +
+ylab('Y')
+tspag
+spag = tspag + aes(colour = factor(id))
+spag
+# Many other times I want to group by id but plot just a few lines
+# (let's say 10% of them) dark and the other light, and not colour them:
+bwspag = tspag + aes(alpha=alpha, group=factor(id)) + guides(alpha=FALSE)
+bwspag
+spag + facet_wrap(~ grouper)
+##### Spaghetti plot with overall smoother:
+# If you want a smoother for the overall group in addition to the spaghetti plot,
+# you can just add geom_smooth:
+sspag <- spag + geom_smooth(se=FALSE, colour='black', size=2)
+sspag
+sspag + facet_wrap(~ grouper)
+bwspag + facet_wrap(~ grouper)
+pdf(tempfile())
+print({g1 = g + aes(colour = group1)})
+print({g1fac = g + aes(colour = factor(group1))})
+print({g2 = g + aes(colour = group2)})
+dev.off()
+pwd
+pwd()
+getwd
+getwd()
+png(tempfile(), res = 300, height =7, width= 7, units = "in")
+print(g2)
+dev.off()
+library("markdown", lib.loc="D:/R/R-3.3.1/library")
+install.packages(c("acepack", "arules", "arulesViz", "cluster", "codetools", "colorspace", "cowplot", "curl", "DoE.base", "effects", "evaluate", "forecast", "FrF2", "ggrepel", "irlba", "kernlab", "lavaan", "lessR", "lsmeans", "Matrix", "mgcv", "mnormt", "pbapply", "pcaPP", "R6", "reshape", "rmarkdown", "rsm", "shiny", "spdep", "stringi"))
+install.packages(c("acepack", "arules", "arulesViz", "cluster",
+)
+)
+update()
+?update
+install.packages(c("acepack", "arm", "BH", "ca", "cairoDevice", "car", "caret", "choroplethr", "chron", "coda", "colorspace", "cowplot", "curl", "data.table", "date", "DEoptimR", "digest", "estimability", "fields", "GGally", "ggExtra", "ggplot2", "ggrepel", "ggthemes", "git2r", "Hmisc", "htmlwidgets", "jsonlite", "knitr", "lava", "leaps", "lessR", "lsmeans", "maptools", "mclust", "mgcv", "miscTools", "openssl", "pbapply", "plm", "plotly", "plotrix", "prodlim", "proto", "psych", "qgraph", "qicharts", "Rcmdr", "RcmdrPlugin.KMggplot2", "RcmdrPlugin.TeachingDemos", "RcmdrPlugin.temis", "Rcpp", "RcppArmadillo", "reshape", "reshape2", "rgl", "rmarkdown", "rms", "robustbase", "RSQLite", "scales", "scatterplot3d", "semTools", "shiny", "shinyjs", "slam", "sp", "SparseM", "spdep", "splm", "stringdist", "survival", "tidyr", "tseries", "XML", "yaml", "zoo"))
+install.packages(c("acepack", "arm", "BH", "ca", "cairoDevice",
